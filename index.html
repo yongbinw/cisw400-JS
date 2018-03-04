@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!--author: YongbinW
+		date created: 2/17/2018
+	-->
+    <meta charset="utf-8">
+    <title>Arrays Slide Show</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src='js/cisw.js'></script>
+    <script type="text/javascript">
+        function newLocation() {  document.location.href = urls[index]; }
+        function newLocation2() {  document.location.href = urls[rand_i]; }
+
+    	window.onload = function(){
+            var images = new Array('imgs/arc.jpg', 'imgs/crc.jpg','imgs/flc.jpg', 'imgs/scc.jpg')
+            urls = new Array('http://www.arc.losrios.edu/','http://crc.losrios.edu/','http://www.flc.losrios.edu/','https://www.scc.losrios.edu/');
+            var speed = 2000;
+            // index to track images and urls
+            index = 0;
+            rand_i = 0; 
+            
+            var banner = $$.$id("banner");
+            var banner2 = $$.$id("banner2");
+         
+            setTimeout(autoPlay, speed)
+            // use recursive to display banner every speed sec
+            function autoPlay() {
+                if(document.images)
+                {
+                    index = ++index == images.length? 0:index;
+                    rand_i = Math.floor( Math.random()*images.length );  // generate a random index 
+                    banner.src = images[index];
+                    banner2.src = images[rand_i];
+                    setTimeout(autoPlay, speed);
+                }
+            }
+        } 
+
+    </script>
+</head>
+<body>
+	<script type="text/javascript">
+		
+	</script>
+
+	<header>
+		<h1>Assignment 4: Arrays Slide Show</h1>
+	</header>
+	<main>
+         <h4>the images appear in normal order</h4>
+		<div class="slide" id='slideBox'>
+            <div class="screen">
+               <a href="javascript:newLocation()"><img id="banner" width=500 height=150 alt="slide banner" src="imgs/arc.jpg" name=slide1></a>
+            </div>
+        </div>
+        <h4>the images appear in random order</h4>
+        <div class="slide" id='slideBox2'>
+            <div class="screen">
+               <a href="javascript:newLocation2()"><img id="banner2" width=500 height=150 alt="slide banner2" src="imgs/arc.jpg" name=slide2></a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
